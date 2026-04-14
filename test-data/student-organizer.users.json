@@ -1,0 +1,32 @@
+[
+    {
+        "_id": { "$oid": "69deac839d1ef4ee83e092bc" },
+        "role": "student",
+        "name": "Olena",
+        "surname": "Shevchenko",
+        "phone": "+380671234567",
+        "email": "olena.shevchenko@gmail.com",
+        "password": "Olena123",
+        "__v": 0
+    },
+    {
+        "_id": { "$oid": "69deac839d1ef4ee83e092bd" },
+        "role": "student",
+        "name": "Andrii",
+        "surname": "Kovalchuk",
+        "phone": "+380501234890",
+        "email": "andrii.kovalchuk@gmail.com",
+        "password": "Andrii123",
+        "__v": 0
+    },
+    {
+        "_id": { "$oid": "69deac839d1ef4ee83e092be" },
+        "role": "student",
+        "name": "Emily",
+        "surname": "Davis",
+        "phone": "+380731234111",
+        "email": "emily.davis@example.com",
+        "password": "Emily123",
+        "__v": 0
+    }
+]

@@ -1,0 +1,78 @@
+[{
+  "_id": {
+    "$oid": "69deae199d1ef4ee83e092cb"
+  },
+  "subject": {
+    "$oid": "69dead399d1ef4ee83e092c1"
+  },
+  "type": "lecture",
+  "startsAt": {
+    "$date": "2026-04-15T10:00:00.000Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69deae199d1ef4ee83e092cc"
+  },
+  "subject": {
+    "$oid": "69dead399d1ef4ee83e092c1"
+  },
+  "type": "practice",
+  "startsAt": {
+    "$date": "2026-04-17T13:30:00.000Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69deae199d1ef4ee83e092cd"
+  },
+  "subject": {
+    "$oid": "69dead399d1ef4ee83e092c2"
+  },
+  "type": "lecture",
+  "startsAt": {
+    "$date": "2026-04-16T11:40:00.000Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69deae199d1ef4ee83e092ce"
+  },
+  "subject": {
+    "$oid": "69dead399d1ef4ee83e092c2"
+  },
+  "type": "practice",
+  "startsAt": {
+    "$date": "2026-04-18T13:30:00.000Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69deae199d1ef4ee83e092cf"
+  },
+  "subject": {
+    "$oid": "69dead399d1ef4ee83e092c3"
+  },
+  "type": "lecture",
+  "startsAt": {
+    "$date": "2026-04-15T13:30:00.000Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69deae199d1ef4ee83e092d0"
+  },
+  "subject": {
+    "$oid": "69dead399d1ef4ee83e092c3"
+  },
+  "type": "seminar",
+  "startsAt": {
+    "$date": "2026-04-19T10:00:00.000Z"
+  },
+  "__v": 0
+}]

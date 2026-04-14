@@ -1,0 +1,108 @@
+[{
+  "_id": {
+    "$oid": "69dead399d1ef4ee83e092c1"
+  },
+  "student": {
+    "$oid": "69deac839d1ef4ee83e092bc"
+  },
+  "name": "computer graphics",
+  "year": 4,
+  "trimester": "spring",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69dead399d1ef4ee83e092c2"
+  },
+  "student": {
+    "$oid": "69deac839d1ef4ee83e092bc"
+  },
+  "name": "distributed systems",
+  "year": 4,
+  "trimester": "spring",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69dead399d1ef4ee83e092c3"
+  },
+  "student": {
+    "$oid": "69deac839d1ef4ee83e092bc"
+  },
+  "name": "machine learning",
+  "year": 4,
+  "trimester": "spring",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69dead399d1ef4ee83e092c4"
+  },
+  "student": {
+    "$oid": "69deac839d1ef4ee83e092bd"
+  },
+  "name": "introduction to programming",
+  "year": 1,
+  "trimester": "spring",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69dead399d1ef4ee83e092c5"
+  },
+  "student": {
+    "$oid": "69deac839d1ef4ee83e092bd"
+  },
+  "name": "algorithms",
+  "year": 1,
+  "trimester": "spring",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69dead399d1ef4ee83e092c6"
+  },
+  "student": {
+    "$oid": "69deac839d1ef4ee83e092bd"
+  },
+  "name": "discrete mathematics",
+  "year": 1,
+  "trimester": "spring",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69dead399d1ef4ee83e092c7"
+  },
+  "student": {
+    "$oid": "69deac839d1ef4ee83e092be"
+  },
+  "name": "art history",
+  "year": 2,
+  "trimester": "spring",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69dead399d1ef4ee83e092c8"
+  },
+  "student": {
+    "$oid": "69deac839d1ef4ee83e092be"
+  },
+  "name": "digital illustration",
+  "year": 2,
+  "trimester": "spring",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69dead399d1ef4ee83e092c9"
+  },
+  "student": {
+    "$oid": "69deac839d1ef4ee83e092be"
+  },
+  "name": "visual composition",
+  "year": 2,
+  "trimester": "spring",
+  "__v": 0
+}]
