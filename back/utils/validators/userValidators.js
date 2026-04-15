@@ -1,7 +1,8 @@
 const { USER_ROLE_VALUES } = require('../constants');
 const {
     notEmptyString,
-    requiredLetterField
+    requiredLetterField,
+    invalidObjectMessage
 } = require('./basicValidators');
 const ValidationError = require('../errors/ValidationError');
 

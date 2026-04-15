@@ -51,9 +51,9 @@ const updateSubject = async (id, subjectData) => {
 
 const deleteSubject = async (id) => {
     try {
-        // const hasLessons = await existLessonsForThisSubject(id);
-        // if (hasLessons) 
-        //     throw new Error("Cannot delete subject with associated lessons.");
+        const hasLessons = await existLessonsForThisSubject(id);
+        if (hasLessons) 
+            throw new Error('Cannot delete subject with associated lessons.');
         
         return await Subject.findByIdAndDelete(id);
     } catch (error) {

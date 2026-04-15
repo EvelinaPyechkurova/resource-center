@@ -7,8 +7,8 @@ const {
 } = require('../constants');
 const {
     notEmptyString,
-    requiredLetterField,
-    invalidObjectMessage
+    invalidObjectMessage,
+    emptyStringMessage
 } = require('./basicValidators');
 const ValidationError = require('../errors/ValidationError');
 
@@ -47,9 +47,8 @@ const validateCreateSubject = async (subject) => {
 
     if (!(await validStudent(student)))
         errors.student = invalidStudentMessage
-    const nameError = requiredLetterField(name, 'Name');
-    if (nameError)
-        errors.name = nameError;
+    if (!notEmptyString(name))
+        errors.name = `Name ${emptyStringMessage}`;
     if (!validYear(year)) 
         errors.year = invalidYearMessage;
     if (!validTrimester(trimester))
@@ -69,10 +68,8 @@ const validateUpdateSubject = (subject) => {
     if (invalidFields.length > 0)
         errors.invalidFields = `Invalid fields in the update: ${invalidFields.join(', ')}`;
 
-    if ('name' in subject) {
-        const error = requiredLetterField(subject.name)
-        if (error) errors.surname = error;
-    }
+    if ('name' in subject && !notEmptyString(subject.name))
+        errors.name = `Name ${emptyStringMessage}`;
 
     if ('year' in subject && !validYear(subject.year))
         errors.year = invalidYearMessage;

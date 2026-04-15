@@ -30,6 +30,15 @@ const DEFAULT_USER_ROLE = 'student';
 const MIN_VALID_YEAR = 1;
 const MAX_VALID_YEAR = 4;
 
+const YEARS = {
+    1: '1',
+    2: '2',
+    3: '3',
+    4: '4'
+};
+
+const YERS_VALUES = ['1', '2', '3', '4'];
+
 
 module.exports = {
     LESSON_TYPES,
@@ -40,5 +49,7 @@ module.exports = {
     MAX_VALID_YEAR,
     USER_ROLES,
     USER_ROLE_VALUES,
-    DEFAULT_USER_ROLE
+    DEFAULT_USER_ROLE,
+    YEARS,
+    YERS_VALUES
 };

@@ -43,8 +43,8 @@ const updateSubject = async (id, subjectData) => {
 }
 
 const deleteSubject = async (id) => {
-    const hasLectures = await existLessonsForThisSubject(id);
-    if (hasLectures) 
+    const hasLessons = await existLessonsForThisSubject(id);
+    if (hasLessons) 
         throw new Error('Cannot delete subject with associated lectures.');
 
     const result = await subjectDAO.deleteSubject(id);

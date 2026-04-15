@@ -10,7 +10,7 @@ const isLetterString = (str) =>
 
 // Basic error messages
 const emptyStringMessage = 'field cannot be empty or consist of only whitespace';
-const notLetterOnlyMessage = 'field must contain only letters (no spaces, numbers, or special characters)';
+const notLetterOnlyMessage = 'field can contain only letters (no spaces, numbers, or special characters)';
 const emptyFieldMessage = (field, model) => `${field} is required for ${model}`;
 const invalidObjectMessage = (model) => `${model} object is missing or contains an invalid number of fields`
 

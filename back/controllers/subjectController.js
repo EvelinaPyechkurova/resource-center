@@ -13,7 +13,7 @@ const getSubjects = async (req, res) => {
 const getSubjectById = async (req, res) => {
     try {
         const id = req.params.id;
-        if(!mongoose.Types.ObjectId.isValid(id))
+        if (!mongoose.Types.ObjectId.isValid(id))
             return res.status(400).json({ error: `${id} is invalid ID address` });
         const subject = await subjectService.getSubjectById(id);
 
@@ -42,7 +42,7 @@ const updateSubject = async (req, res) => {
         const id = req.params.id;
         const existingSubject = await subjectService.getSubjectById(id);
 
-        if(!existingSubject)
+        if (!existingSubject)
             return res.status(404).json({ error: `Subject with ID ${id} not found` });
 
         const subject = req.body;
