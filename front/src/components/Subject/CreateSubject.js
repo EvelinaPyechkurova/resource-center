@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ErrorMessage from '../ErrorMessage';
 import Form from '../Form';
-import {TRIMESTER_TYPE_VALUES, YERS_VALUES} from '../../utils/constants';
+import { TRIMESTER_TYPE_VALUES, YERS_VALUES } from '../../utils/constants';
 
 const CreateSubject = () => {
 

@@ -10,9 +10,9 @@ import Subjects from './components/Subject/Subjects';
 import SubjectDetails from './components/Subject/SubjectDetails';
 import CreateSubject from './components/Subject/CreateSubject';
 
-// import Lessons from './components/Lesson/Lessons';
-// import LessonDetails from './components/Lesson/LessonDetails';
-// import CreateLesson from './components/Lesson/CreateLesson';
+import Lessons from './components/Lesson/Lessons';
+import LessonDetails from './components/Lesson/LessonDetails';
+import CreateLesson from './components/Lesson/CreateLesson';
 
 function App() {
     return (
@@ -29,9 +29,9 @@ function App() {
                         <Route path="/subjects/create" element={<CreateSubject />} />
                         <Route path="/subjects/:id" element={<SubjectDetails />} />
 
-                        {/*<Route path="/lessons" element={<Lessons />} />
+                        <Route path="/lessons" element={<Lessons />} />
                         <Route path="/lessons/create" element={<CreateLesson />} />
-                        <Route path="/lessons/:id" element={<LessonDetails />} /> */}
+                        <Route path="/lessons/:id" element={<LessonDetails />} />
 
                         {/* <Route path="*" element={<NotFound />} /> */}
                     </Routes>
