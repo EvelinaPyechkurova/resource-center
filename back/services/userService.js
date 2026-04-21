@@ -3,10 +3,13 @@ const {
     validateCreateUser,
     validateUpdateUser
 } = require('../utils/validators/userValidators');
-const { existSubjectsForThisStudent } = require('../utils/constraints');
+const { 
+    existEnrollmentsForThisStudent,
+    existSubjectsForThisTeacher
+} = require('../utils/constraints');
 
 
-const buildUserFilters = (query) => {
+const buildUserFilters = async (query) => {
     const filters = {};
 
     if (query.search) {
@@ -33,6 +36,13 @@ const buildUserFilters = (query) => {
 
         if (query.email)
             filters.email = new RegExp(query.email, 'i');
+    }
+
+    if (query.subject && Types.ObjectId.isValid(query.subject)) {
+        const studentIds =
+            await enrollmentService.getStudentIdsBySubject(query.subject);
+
+        filters._id = { $in: studentIds };
     }
 
     return filters;
@@ -63,21 +73,36 @@ const updateUser = async (id, userData) => {
         throw new Error('Invalid data: cannot update non-existing user');
 
     validateUpdateUser(userData);
-    return await userDAO.updateUser(id, userData);
+
+    Object.assign(user, userData);
+    await user.save();
+    
+    return user;
 };
 
 
 const deleteUser = async (id) => {
-    const hasSubjects = await existSubjectsForThisStudent(id);
-    if (hasSubjects) 
-        throw new Error('Cannot delete user with associated subjects.');
+    const user = await userDAO.getUserById(id);
 
-    const result = await userDAO.deleteUser(id);
-    if (!result) 
+    if (!user)
         throw new Error('User not found');
 
-    return {message: 'User deleted successfully'};    
-}
+    if (user.role === 'student') {
+        const hasEnrollments = await existEnrollmentsForThisStudent(id);
+        if (hasEnrollments)
+            throw new Error('Cannot delete student enrolled to subjects');
+    }
+
+    if (user.role === 'teacher') {
+        const hasSubjects = await existSubjectsForThisTeacher(id);
+        if (hasSubjects)
+            throw new Error('Cannot delete teacher teaching subjects');
+    }
+
+    await userDAO.deleteUser(id);
+
+    return { message: 'User deleted successfully' };
+};
 
 module.exports = {
     getUsers,

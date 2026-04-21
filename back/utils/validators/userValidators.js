@@ -22,22 +22,29 @@ const validEmail = (email) => {
     return notEmptyString(email) && emailPattern.test(email);
 }
 
+const validPassword = (password) => {
+    const passwordPattern = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{12,}$/;
+    return notEmptyString(password) && passwordPattern.test(password);
+};
+
 
 // Error messages User model fields
 const invalidUserRoleMessage = `user role must be present and be one of: ${USER_ROLE_VALUES.join(', ')}`;
 const invalidPhoneNumberMessage = 'field is not valid phone number';
 const invalidEmailMessage = 'field is not valid email';
+const invalidPasswordMessage =
+    'password must be at least 12 characters long and include uppercase, lowercase, number and special character';
 
 
 // Actual validators for creating and updating User model
 function validateCreateUser(user) {
     const errors = {};
 
-    if (!user || typeof user !== 'object' || Object.keys(user).length !== 5)
+    if (!user || typeof user !== 'object' || Object.keys(user).length !== 6)
         errors.general = invalidObjectMessage('user')
 
 
-    const { role, name, surname, phone, email } = user;
+    const { role, name, surname, phone, email, password } = user;
 
     if (!validRole(role))
         errors.role = invalidUserRoleMessage;
@@ -51,13 +58,15 @@ function validateCreateUser(user) {
         errors.phone = `Phone ${invalidPhoneNumberMessage}`;
     if (!validEmail(email)) 
         errors.email = `Email ${invalidEmailMessage}`;
+    if (!validPassword(password))
+        errors.password = invalidPasswordMessage;
 
     if (Object.keys(errors).length > 0)
         throw new ValidationError(`Validation failed for creating user`, errors);
 }
 
 function validateUpdateUser(user) {
-    const allowedFields = ['role', 'name', 'surname', 'phone', 'email'];
+    const allowedFields = ['role', 'name', 'surname', 'phone', 'email', 'password'];
     const errors = {};
 
     const fields = Object.keys(user);
@@ -80,6 +89,9 @@ function validateUpdateUser(user) {
     if ('email' in user && !validEmail(user.email))
         errors.email = `Email ${invalidEmailMessage}`;
 
+    if ('password' in user && !validPassword(user.password))
+    errors.password = invalidPasswordMessage;
+
     if (Object.keys(errors).length > 0)
         throw new ValidationError(`Validation failed for updating user`, errors);
 }
@@ -93,5 +105,7 @@ module.exports = {
     validEmail,
     invalidEmailMessage,
     validateCreateUser,
-    validateUpdateUser
+    validateUpdateUser,
+    validPassword,
+    invalidPasswordMessage,
 };
