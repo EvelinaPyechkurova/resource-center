@@ -1,3 +1,140 @@
+:root {
+    /* ===== PRIMITIVE COLORS (RAW PALETTES) ===== */
+
+    /* Purple */
+    --purple-50:  #D2C7D9;
+    --purple-200: #C693E1;
+    --purple-400: #673F7E;
+    --purple-600: #421D53;
+    --purple-800: #270F32;
+    --purple-900: #190424;
+
+    /* Plum */
+    --plum-50:  #DAC8D4;
+    --plum-200: #F7ACCF;
+    --plum-400: #7F225F;
+    --plum-600: #5F1647;
+    --plum-800: #3F0B2F;
+    --plum-900: #1E0517;
+
+    /* Violet */
+    --violet-50:  #D8C7D9;
+    --violet-200: #E193E1;
+    --violet-400: #9C2E9E;
+    --violet-600: #5C165E;
+    --violet-800: #3C0B40;
+    --violet-900: #1C051F;
+
+    /* Indigo */
+    --indigo-50:  #D0C7D9;
+    --indigo-200: #9F69CF;
+    --indigo-400: #7817DB;
+    --indigo-600: #4A0E85;
+    --indigo-800: #2B084D;
+    --indigo-900: #18042B;
+
+    /* ===== SPACING ===== */
+
+    --spacing-xxs: 4px;
+    --spacing-xs: 8px;
+    --spacing-sm: 16px;
+    --spacing-md: 24px;
+    --spacing-lg: 32px;
+    --spacing-xl: 40px;
+
+    /* ===== RADIUS ===== */
+
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+    --radius-xl: 32px;
+    --radius-2xl: 128px;
+
+
+    /* ===== TEXT ===== */
+    --color-text-primary: var(--purple-50);
+    --color-text-secondary: var(--purple-200);
+    --color-text-brand: var(--purple-50);
+    --color-text-invert: var(--purple-900);
+
+    /* ===== SURFACE ===== */
+    --color-surface-primary: var(--purple-900);
+    --color-surface-secondary: var(--purple-800);
+    --color-surface-tertiary: var(--purple-600);
+    --color-surface-accent: var(--purple-200);
+
+    /* ===== BORDER ===== */
+    --color-border-primary: var(--purple-600);
+
+    /* ===== ICON ===== */
+    --color-icon-primary: var(--purple-50);
+}
+
+
+[data-theme="purple"] {
+    --color-text-primary: var(--purple-50);
+    --color-text-secondary: var(--purple-200);
+    --color-text-brand: var(--purple-50);
+    --color-text-invert: var(--purple-900);
+
+    --color-surface-primary: var(--purple-900);
+    --color-surface-secondary: var(--purple-800);
+    --color-surface-tertiary: var(--purple-600);
+    --color-surface-accent: var(--purple-200);
+
+    --color-border-primary: var(--purple-600);
+    --color-icon-primary: var(--purple-50);
+}
+
+
+[data-theme="plum"] {
+    --color-text-primary: var(--plum-50);
+    --color-text-secondary: var(--plum-200);
+    --color-text-brand: var(--plum-50);
+    --color-text-invert: var(--plum-900);
+
+    --color-surface-primary: var(--plum-900);
+    --color-surface-secondary: var(--plum-800);
+    --color-surface-tertiary: var(--plum-600);
+    --color-surface-accent: var(--plum-200);
+
+    --color-border-primary: var(--plum-600);
+    --color-icon-primary: var(--plum-50);
+}
+
+
+[data-theme="violet"] {
+    --color-text-primary: var(--violet-50);
+    --color-text-secondary: var(--violet-200);
+    --color-text-brand: var(--violet-50);
+    --color-text-invert: var(--violet-900);
+
+    --color-surface-primary: var(--violet-900);
+    --color-surface-secondary: var(--violet-800);
+    --color-surface-tertiary: var(--violet-600);
+    --color-surface-accent: var(--violet-200);
+
+    --color-border-primary: var(--violet-600);
+    --color-icon-primary: var(--violet-50);
+}
+
+
+[data-theme="indigo"] {
+    --color-text-primary: var(--indigo-50);
+    --color-text-secondary: var(--indigo-200);
+    --color-text-brand: var(--indigo-50);
+    --color-text-invert: var(--indigo-900);
+
+    --color-surface-primary: var(--indigo-900);
+    --color-surface-secondary: var(--indigo-800);
+    --color-surface-tertiary: var(--indigo-600);
+    --color-surface-accent: var(--indigo-200);
+
+    --color-border-primary: var(--indigo-600);
+    --color-icon-primary: var(--indigo-50);
+}
+
+
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
 * {

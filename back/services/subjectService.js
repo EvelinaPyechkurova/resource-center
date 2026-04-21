@@ -1,9 +1,18 @@
+const mongoose = require('mongoose');
 const subjectDAO = require('../dao/subjectDAO');
 const { validateCreateSubject, validateUpdateSubject } = require('../utils/validators/subjectValidators');
 const { existLessonsForThisSubject } = require('../utils/constraints');
 
+const { Types } = mongoose;
+
 const buildSubjectFilters = (query, /*userId*/) => {
     const filters = {};
+
+    // if (query.user)
+    //     filters.student = new Types.ObjectId(query.user);
+
+    if (query.user)
+        filters.teacher = new Types.ObjectId(query.user);
 
     if (query.name)
         filters.name = new RegExp(query.name, 'i');

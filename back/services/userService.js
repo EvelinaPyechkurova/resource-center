@@ -9,20 +9,31 @@ const { existSubjectsForThisStudent } = require('../utils/constraints');
 const buildUserFilters = (query) => {
     const filters = {};
 
-    if (query.role)
-        filters.role = new RegExp(`^${query.role}$`, 'i');
+    if (query.search) {
+        const search = query.search;
 
-    if (query.name)
-        filters.name = new RegExp(query.name, 'i');
+        filters.$or = [
+            { name: { $regex: search, $options: 'i' } },
+            { surname: { $regex: search, $options: 'i' } },
+            { phone: { $regex: search, $options: 'i' } },
+            { email: { $regex: search, $options: 'i' } }
+        ];
+    } else {
+        if (query.role)
+            filters.role = new RegExp(`^${query.role}$`, 'i');
 
-    if (query.surname)
-        filters.surname = new RegExp(query.surname, 'i');
+        if (query.name)
+            filters.name = new RegExp(query.name, 'i');
 
-    if (query.phone)
-        filters.phone = new RegExp(query.phone, 'i');
+        if (query.surname)
+            filters.surname = new RegExp(query.surname, 'i');
 
-    if (query.email)
-        filters.email = new RegExp(query.email, 'i');
+        if (query.phone)
+            filters.phone = new RegExp(query.phone, 'i');
+
+        if (query.email)
+            filters.email = new RegExp(query.email, 'i');
+    }
 
     return filters;
 };

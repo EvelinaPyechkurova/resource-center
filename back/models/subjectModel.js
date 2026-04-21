@@ -8,9 +8,9 @@ const { emptyFieldMessage } = require('../utils/validators/basicValidators');
 
 
 const subjectSchema = new mongoose.Schema({
-    student: {
+    teacher: {
         type: mongoose.Schema.Types.ObjectId,
-        required: [true, emptyFieldMessage('Student', 'subject')]
+        required: [true, emptyFieldMessage('Teacher', 'subject')]
     },
     name: {
         type: String,

@@ -8,8 +8,9 @@ import { YERS_VALUES, TRIMESTER_TYPE_VALUES } from '../../utils/constants';
 
 const SubjectDetails = () => {
     const { id } = useParams();
-    const { data:subject, isLoading, error } = useFetchData(`${process.env.REACT_APP_API_URL}/subjects/${id}`)
+    const { data:subject, isLoading, error } = useFetchData(`${process.env.REACT_APP_API_URL}/subjects?user=${id}`)
     const { data:lessons } = useFetchData(`${process.env.REACT_APP_API_URL}/lessons?subject=${id}`);
+    
     if(error)
         console.log(error);
 

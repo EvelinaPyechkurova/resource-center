@@ -1,12 +1,16 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useFetchData from '../../hooks/useFetchData';
 import ErrorMessage from '../ErrorMessage';
 import Form from '../Form';
 import { TRIMESTER_TYPE_VALUES, YERS_VALUES } from '../../utils/constants';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const CreateSubject = () => {
 
     const [formData, setFormData] = useState({
+        student: '',
         name: '',
         year: '',
         trimester: ''
@@ -16,7 +20,19 @@ const CreateSubject = () => {
     const [errorMessage, setErrorMessage] = useState(null);
     const navigate = useNavigate();
 
+    const { data: users } =
+        useFetchData(`${API_URL}/users`);
+
+    const userOptions = users
+        ? users.map(user => ({
+            value: user._id,
+            label: `${user.surname} ${user.name}`
+        }))
+        : [];
+
     const fields = [
+        {name: 'student', label: 'Student', value: formData.student,
+            onChange: (e) => handleChange(e),options: userOptions},
         {type: "text", name: 'name', label: 'Subject name', value: formData.name,
              onChange: (e) => handleChange(e)},
         {type: "number", name: 'year', label: 'Subject year', value: formData.year,
@@ -35,7 +51,7 @@ const CreateSubject = () => {
         setIsLoading(true);
     
         try {
-            const res = await fetch('${process.env.REACT_APP_API_URL}/subjects', {
+            const res = await fetch(`${API_URL}/subjects`, {
                 method: 'POST',
                 headers: { 'Content-type': 'application/json' },
                 body: JSON.stringify(formData),

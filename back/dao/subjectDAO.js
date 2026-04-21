@@ -20,9 +20,9 @@ const getSubjectById = async (id) => {
     }
 }
 
-const getSubjectsByStudent = async (studentId) => {
+const getSubjectsByTeacher = async (teacherId) => {
     try {
-        const lessons = await Lesson.find({ student: studentId }).select('subject');
+        const lessons = await Lesson.find({ teacher: teacherId }).select('subject');
         const subjectIds = [...new Set(lessons.map(lesson => lesson.subject))];
         return await Subject.find({_id : {$in: subjectIds}});
     } catch(error) {
@@ -65,7 +65,7 @@ const deleteSubject = async (id) => {
 module.exports = {
     getSubjects,
     getSubjectById,
-    getSubjectsByStudent,
+    getSubjectsByTeacher,
     createSubject,
     updateSubject,
     deleteSubject
