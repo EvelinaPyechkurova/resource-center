@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const lessonDAO = require('../dao/lessonDAO');
+const enrollmentService = require('enrollmentService')
 const Subject = require('../models/subjectModel');
 const {
     validateCreateLesson,
@@ -46,30 +47,35 @@ const buildDateRange = (dateString, range = 'day') => {
     return { $gte: start, $lt: end };
 };
 
-const buildLessonFilters = async (query, /*userId*/) => {
+const buildLessonFilters = async (query) => {
     const filters = {};
 
-    if (query.subject)
+    if (query.subject && Types.ObjectId.isValid(query.subject))
         filters.subject = new Types.ObjectId(query.subject);
 
     if (query.student && Types.ObjectId.isValid(query.student)) {
-        const subjects = await Subject.find({ student: query.student }).select('_id');
+        const subjectIds = await enrollmentService.getSubjectIdsByStudent(query.student);
+        filters.subject = { $in: subjectIds };
+    }
+
+    if (query.teacher && Types.ObjectId.isValid(query.teacher)) {
+        const subjects = await Subject.find({ teacher: query.teacher }).select('_id');
         const subjectIds = subjects.map(s => s._id);
         filters.subject = { $in: subjectIds };
     }
 
     if (query.type)
-        filters.type = new RegExp(`^${query.type}$`, 'i')
+        filters.type = new RegExp(`^${query.type}$`, 'i');
 
     if (query.date) {
-        const range = query.range || 'day';
+        const range = query.range || 'month';
         const dateFilter = buildDateRange(query.date, range);
         if (dateFilter)
             filters.startsAt = dateFilter;
     }
 
     return filters;
-}
+};
 
 const getLessons = async (query, /*currentUser*/) => {
     const filters = await buildLessonFilters(query);
@@ -86,14 +92,14 @@ const getLessonById = async (id) => {
 
 const createLesson = async (lessonData) => {
     await validateCreateLesson(lessonData);
-    lessonDAO.createLesson(lessonData);
+    return await lessonDAO.createLesson(lessonData);
 }
 
 const updateLesson = async (id, lessonData) => {
     if (await getLessonById(id) === null)
         throw new Error(`Invalid data: cannot update non-existing lesson`);    
-    await validateUpdateLesson(lessonData);
-    lessonDAO.updateLesson(id, lessonData);
+    validateUpdateLesson(lessonData);
+    return await lessonDAO.updateLesson(id, lessonData);
 }
 
 const deleteLesson = async (id) => {

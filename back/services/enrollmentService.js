@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const enrollmentDAO = require('../dao/enrollmentDAO');
+const { validateCreateEnrollment } = require('../utils/validators/enrollmentValidators');
 
 const { Types } = mongoose;
 
@@ -34,17 +35,10 @@ const isStudentEnrolled = async (studentId, subjectId) => {
     return existing.length > 0;
 };
 
-const enrollStudent = async (studentId, subjectId) => {
-    const alreadyEnrolled = await isStudentEnrolled(studentId, subjectId);
-
-    if (alreadyEnrolled)
-        throw new Error('Student already enrolled in this subject');
-
-    return await enrollmentDAO.createEnrollment({
-        student: studentId,
-        subject: subjectId
-    });
-};
+const enrollStudent = async (enrollmentData) => {
+    await validateCreateEnrollment(enrollmentData);
+    return await enrollmentDAO.createEnrollment(enrollmentData);
+}
 
 const removeEnrollment = async (studentId, subjectId) => {
     return await enrollmentDAO.deleteByStudentAndSubject(studentId, subjectId);
