@@ -1,18 +1,21 @@
 const mongoose = require('mongoose');
 const subjectDAO = require('../dao/subjectDAO');
+const enrollmentService = require('/enrollmentService')
 const { validateCreateSubject, validateUpdateSubject } = require('../utils/validators/subjectValidators');
-const { existLessonsForThisSubject } = require('../utils/constraints');
+const { existLessonsForThisSubject, existEnrollmentsForThisSubject } = require('../utils/constraints');
 
 const { Types } = mongoose;
 
-const buildSubjectFilters = (query, /*userId*/) => {
+const buildSubjectFilters = async (query, /*userId*/) => {
     const filters = {};
 
-    // if (query.user)
-    //     filters.student = new Types.ObjectId(query.user);
+    if (query.student && Types.ObjectId.isValid(query.student)) {
+        const subjectIds = await enrollmentService.getSubjectIdsByStudent(query.student);
+        filters._id = { $in: subjectIds };
+    }
 
-    if (query.user)
-        filters.teacher = new Types.ObjectId(query.user);
+    if (query.teacher && Types.ObjectId.isValid(query.teacher))
+        filters.teacher = new Types.ObjectId(query.teacher);
 
     if (query.name)
         filters.name = new RegExp(query.name, 'i');
@@ -27,7 +30,7 @@ const buildSubjectFilters = (query, /*userId*/) => {
 }
 
 const getSubjects = async (query, /*currentUser*/) => {
-    const filters = buildSubjectFilters(query);
+    const filters = await buildSubjectFilters(query);
 
     // if (currentUser.role == 'student')
     //     filters.student = currentUser._id;
@@ -53,15 +56,20 @@ const updateSubject = async (id, subjectData) => {
 
 const deleteSubject = async (id) => {
     const hasLessons = await existLessonsForThisSubject(id);
-    if (hasLessons) 
-        throw new Error('Cannot delete subject with associated lectures.');
+    if (hasLessons)
+        throw new Error('Cannot delete subject with associated lessons.');
+
+    const hasEnrollments = await existEnrollmentsForThisSubject(id);
+    if (hasEnrollments)
+        throw new Error('Cannot delete subject with enrolled students.');
 
     const result = await subjectDAO.deleteSubject(id);
-    if (!result) 
+
+    if (!result)
         throw new Error('Subject not found');
 
-    return {message: 'Subject deleted successfully'};    
-}
+    return { message: 'Subject deleted successfully' };
+};
 
 module.exports = {
     getSubjects,

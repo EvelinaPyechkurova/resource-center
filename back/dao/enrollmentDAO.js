@@ -1,4 +1,4 @@
-const Enrollment = require('../models/enrollementModel');
+const Enrollment = require('../models/enrollmentModel');
 
 const getEnrollments = async (filters = {}) => {
     try {
@@ -38,6 +38,13 @@ const updateEnrollment = async (id, enrollmentData) => {
     }
 };
 
+const deleteByStudentAndSubject = async (studentId, subjectId) => {
+    return await Enrollment.findOneAndDelete({
+        student: studentId,
+        subject: subjectId
+    });
+};
+
 const deleteEnrollment = async (id) => {
     try {
         return await Enrollment.findByIdAndDelete(id);
@@ -52,5 +59,6 @@ module.exports = {
     getEnrollmentById,
     createEnrollment,
     updateEnrollment,
+    deleteByStudentAndSubject,
     deleteEnrollment
 };

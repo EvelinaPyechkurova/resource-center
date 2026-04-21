@@ -24,13 +24,13 @@ const validDate = (date) => {
     return parsedDate instanceof Date && !isNaN(parsedDate.getTime());
 }
 
-// Error messages Lesson model fields
+// Error messages for Lesson fields
 const invalidSubjectMessage = 'Cannot create lesson for not existing subject';
 const invalidTypeMessage = `Type of lesson must be one of ${LESSON_TYPE_VALUES.join(", ")}`;
 const invalidDateMessage = 'Invalid date format or value';
 
 
-// Actual validators for creating and updating Lesson model
+// Actual validators for creating and updating Lesson
 const validateCreateLesson = async (lesson) => {
     let errors = {};
 

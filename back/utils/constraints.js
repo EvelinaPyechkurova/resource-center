@@ -1,17 +1,35 @@
-const Subject = require('../models/subjectModel');
+const Enrollment = require('../models/enrollementModel');
 const Lesson = require('../models/lessonModel');
+const Subject = require('../models/subjectModel');
 
-const existSubjectsForThisStudent = async (id) => {
-    const subjectCount = await Subject.countDocuments({ student: id });
-    return subjectCount > 0;
-}
 
-const existLessonsForThisSubject = async (id) => {
-    const lessonCount = await Lesson.countDocuments({ subject: id });
-    return lessonCount > 0;
-}
+// subject → lessons
+const existLessonsForThisSubject = async (subjectId) => {
+    const count = await Lesson.countDocuments({ subject: subjectId });
+    return count > 0;
+};
+
+// subject → enrollments
+const existEnrollmentsForThisSubject = async (subjectId) => {
+    const count = await Enrollment.countDocuments({ subject: subjectId });
+    return count > 0;
+};
+
+// student → enrollments
+const existEnrollmentsForThisStudent = async (studentId) => {
+    const count = await Enrollment.countDocuments({ student: studentId });
+    return count > 0;
+};
+
+// teacher → subjects
+const existSubjectsForThisTeacher = async (teacherId) => {
+    const count = await Subject.countDocuments({ teacher: teacherId });
+    return count > 0;
+};
 
 module.exports = {
-    existSubjectsForThisStudent,
-    existLessonsForThisSubject
+    existLessonsForThisSubject,
+    existEnrollmentsForThisSubject,
+    existEnrollmentsForThisStudent,
+    existSubjectsForThisTeacher
 };
