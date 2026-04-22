@@ -3,9 +3,10 @@ const cors = require('cors');
 require('dotenv').config();
 
 const { connectToDb } = require('./config/db');
+const authRoutes    = require('./routes/authRoutes');
 const subjectRoutes = require('./routes/subjectRoutes');
 const lessonRoutes  = require('./routes/lessonRoutes');
-const userRoutes  = require('./routes/userRoutes');
+const userRoutes    = require('./routes/userRoutes');
 
 const server = express();
 const PORT = process.env.PORT;
@@ -13,6 +14,7 @@ const MONGO_URI = process.env.MONGO_URI;
 
 server.use(cors());
 server.use(express.json());
+server.use('/auth', authRoutes);
 server.use('/subjects', subjectRoutes);
 server.use('/lessons', lessonRoutes);
 server.use('/users', userRoutes);
