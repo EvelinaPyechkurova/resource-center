@@ -1,32 +1,36 @@
-[
-    {
-        "_id": { "$oid": "69deac839d1ef4ee83e092bc" },
-        "role": "student",
-        "name": "Olena",
-        "surname": "Shevchenko",
-        "phone": "+380671234567",
-        "email": "olena.shevchenko@gmail.com",
-        "password": "Olena123",
-        "__v": 0
-    },
-    {
-        "_id": { "$oid": "69deac839d1ef4ee83e092bd" },
-        "role": "student",
-        "name": "Andrii",
-        "surname": "Kovalchuk",
-        "phone": "+380501234890",
-        "email": "andrii.kovalchuk@gmail.com",
-        "password": "Andrii123",
-        "__v": 0
-    },
-    {
-        "_id": { "$oid": "69deac839d1ef4ee83e092be" },
-        "role": "student",
-        "name": "Emily",
-        "surname": "Davis",
-        "phone": "+380731234111",
-        "email": "emily.davis@example.com",
-        "password": "Emily123",
-        "__v": 0
-    }
-]
+[{
+  "_id": {
+    "$oid": "69deac839d1ef4ee83e092bc"
+  },
+  "role": "teacher",
+  "name": "Olena",
+  "surname": "Shevchenko",
+  "phone": "+380671234569",
+  "email": "olena.shevchenko@gmail.com",
+  "password": "$2b$10$7xGlPPQiPH4XhDuWxT.jie0zxYeCxaEDzxYvQyPQ491zHmto.UTLy",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69deac839d1ef4ee83e092bd"
+  },
+  "role": "student",
+  "name": "Andrii",
+  "surname": "Kovalchuk",
+  "phone": "+380501234896",
+  "email": "andrii.kovalchuk@gmail.com",
+  "password": "$2b$10$Xop6Oac84qHZCksq32If5OSjFXrecpJ8Gog5q9KUr2UkDhAmrJQBS",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69deac839d1ef4ee83e092be"
+  },
+  "role": "student",
+  "name": "Emily",
+  "surname": "Davis",
+  "phone": "+380731234111",
+  "email": "emily.davis@example.com",
+  "password": "$2b$10$zA1rLTNyoltHhEK3UcZJduVpOVFrF19oaqRhICS/TOFht5jMFUigW",
+  "__v": 0
+}]
