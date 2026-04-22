@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const lessonDAO = require('../dao/lessonDAO');
-const enrollmentService = require('enrollmentService')
+const enrollmentService = require('./enrollmentService')
 const Subject = require('../models/subjectModel');
 const {
     validateCreateLesson,

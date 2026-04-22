@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const subjectDAO = require('../dao/subjectDAO');
-const enrollmentService = require('enrollmentService')
+const enrollmentService = require('./enrollmentService')
 const { validateCreateSubject, validateUpdateSubject } = require('../utils/validators/subjectValidators');
 const { existLessonsForThisSubject, existEnrollmentsForThisSubject } = require('../utils/constraints');
 

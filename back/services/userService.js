@@ -50,7 +50,7 @@ const buildUserFilters = async (query) => {
 
 
 const getUsers = async (query = {}) => {
-    const filters = buildUserFilters(query);
+    const filters = await buildUserFilters(query);
     return await userDAO.getUsers(filters);
 };
 
@@ -73,11 +73,11 @@ const updateUser = async (id, userData) => {
         throw new Error('Invalid data: cannot update non-existing user');
 
     validateUpdateUser(userData);
+    console.log('validation passed')
 
-    Object.assign(user, userData);
-    await user.save();
-    
-    return user;
+    Object.assign(existingUser, userData);
+    await existingUser.save();
+    return existingUser;
 };
 
 
