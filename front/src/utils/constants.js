@@ -19,11 +19,11 @@ const TRIMESTER_TYPE_VALUES = ['autumn', 'spring', 'summer'];
 
 
 const USER_ROLES = {
-    ADMIN: 'admin',
+    TEACHER: 'teacher',
     STUDENT: 'student',
-
 };
-const USER_ROLE_VALUES = ['admin', 'student'];
+
+const USER_ROLE_VALUES = ['teacher', 'student'];
 const DEFAULT_USER_ROLE = 'student';
 
 

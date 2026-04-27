@@ -2,6 +2,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
 
+import Login from './components/Auth/Login';
+import SignUp from './components/Auth/SignUp';
+
 import Users from './components/User/Users';
 import UserDetails from './components/User/UserDetails';
 import CreateUser from './components/User/CreateUser';
@@ -21,6 +24,9 @@ function App() {
                 <Navbar />
                 <div className="content">
                     <Routes>
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/signup" element={<SignUp />} />
+
                         <Route path="/users" element={<Users />} />
                         <Route path="/users/create" element={<CreateUser />} />
                         <Route path="/users/:id" element={<UserDetails />} />
