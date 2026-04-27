@@ -37,7 +37,7 @@ const invalidPasswordMessage =
 
 
 // Actual validators for creating and updating User model
-function validateCreateUser(user) {
+async function validateCreateUser(user) {
     const errors = {};
 
     if (!user || typeof user !== 'object' || Object.keys(user).length !== 6)

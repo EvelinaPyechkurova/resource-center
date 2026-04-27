@@ -61,7 +61,7 @@ const getUserById = async (id) => {
 
 
 const createUser = async (userData) => {
-    validateCreateUser(userData);
+    await validateCreateUser(userData);
     return await userDAO.createUser(userData);
 };
 

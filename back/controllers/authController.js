@@ -1,7 +1,8 @@
-// controllers/authController.js
 const authService = require('../services/authService');
+const userController = require('../controllers/userController');
 
 const register = async (req, res) => {
+    
     try {
         const user = await authService.register(req.body);
         res.status(201).json(user);
@@ -13,13 +14,23 @@ const register = async (req, res) => {
 const login = async (req, res) => {
     try {
         const result = await authService.login(req.body);
-        res.json(result);
+        res.status(200).json(result);
     } catch (err) {
         res.status(400).json({ error: err.message });
     }
 };
 
+const logout = async (req, res) => {
+    try {
+        const result = await authService.logouy(req.body);
+        res.status(200).json(result);
+    } catch (err) {
+        res.status(400).json({ error: err.message });
+    }
+}
+
 module.exports = {
     register,
-    login
+    login,
+    logout
 };
