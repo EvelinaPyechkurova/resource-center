@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import useFetchData from '../../hooks/useFetchData';
 import ErrorMessage from '../ErrorMessage';
 import Form from '../Form';
@@ -9,10 +10,14 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 const CreateLesson = () => {
 
+    const location = useLocation();
+    const params = new URLSearchParams(location.search);
+    const prefilledDate = params.get('date');
+
     const [formData, setFormData] = useState({
         subject: '',
         type: '',
-        startsAt: ''
+        startsAt: prefilledDate || ''
     });
 
     const [isLoading, setIsLoading] = useState(false);
@@ -46,7 +51,7 @@ const CreateLesson = () => {
             options: LESSON_TYPE_VALUES
         },
         {
-            type: 'date',
+            type: 'datetime-local',
             name: 'startsAt',
             label: 'Lesson Date',
             value: formData.startsAt,

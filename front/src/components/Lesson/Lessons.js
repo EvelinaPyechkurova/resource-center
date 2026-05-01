@@ -1,4 +1,5 @@
-import LessonList from './LessonList';
+// import LessonList from './LessonList';
+import CalendarView from './CalendarView';
 import useFetchData from '../../hooks/useFetchData';
 import { useNavigate } from 'react-router-dom';
 import FilterSidebar from '../FilterSidebar';
@@ -55,12 +56,12 @@ const Lessons = () => {
         <div className="lessons">
             <FilterSidebar fields={fields} onSearch={handleSearch} />
             <button className="create-button" onClick={handleCreateLesson}>
-                add new lesson
+                Add lesson
             </button>
 
             {error && <div>{error}</div>}
             {isLoading && <div>Loading...</div>}
-            {lessons && <LessonList lessons={lessons} />}
+            {lessons && <CalendarView lessons={lessons} />}
         </div>
     );
 };

@@ -64,24 +64,30 @@ const Form = ({
                         )}
 
                         {/* INPUT (text/password/etc) */}
-                        {(!field.type || field.type === "text" || field.type === "password") && (
-                            <div className="form-input-wrapper">
-                                {field.icon && (
-                                    <span className="form-icon">
-                                        {field.icon}
-                                    </span>
-                                )}
-                                <input
-                                    type={field.type || "text"}
-                                    name={field.name}
-                                    value={field.value}
-                                    onChange={field.onChange}
-                                    required={field.required}
-                                    placeholder={field.placeholder || ""}
-                                    className="form-input"
-                                />
-                            </div>
-                        )}
+                        {(
+    !field.type ||
+    field.type === "text" ||
+    field.type === "password" ||
+    field.type === "email" ||
+    field.type === "datetime-local"
+) && (
+    <div className="form-input-wrapper">
+        {field.icon && (
+            <span className="form-icon">
+                {field.icon}
+            </span>
+        )}
+        <input
+            type={field.type || "text"}
+            name={field.name}
+            value={field.value}
+            onChange={field.onChange}
+            required={field.required}
+            placeholder={field.placeholder || ""}
+            className="form-input"
+        />
+    </div>
+)}
                     </div>
                 ))}
             </div>

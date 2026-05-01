@@ -177,14 +177,13 @@
     padding: 6px;
 }
 
-.navbar a:hover {
-    color: #6610f2;
-}
-
 .content {
-    max-width: 600px;
-    margin: 40px auto;
-    padding: 20px;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    /* max-width: 600px; */
+    /* margin: 40px auto;
+    padding: 20px; */
 }
 
 .preview{
@@ -199,7 +198,7 @@
 
 .preview h2{
     font-size: 20px;
-    color: #6610f2;
+    /* color: #6610f2; */
     margin-bottom: 8px;
 }
 
@@ -208,21 +207,21 @@ a{
 }
 
 a:hover{
-    color: #6610f2;
+    color: var(--color-surface-accent);
 }
 
 
 .details{
     padding: 20px;
     padding-left: 80px;
-    border: thick solid #6610f2;
+    border: thick solid var(--color-surface-accent);
     border-radius: 25% 10%;;
     max-width: 400px;
 }
 
 .details h2{
     font-size: 20px;
-    color:#6610f2;
+    color: var(--color-text-primary);
     margin-bottom: 10px;
 }
 
@@ -251,9 +250,9 @@ a:hover{
 .errorMessage ul {
     padding-left: 20px;
 }
-
+/* 
 /* General sidebar styling */
-.filter-sidebar {
+/* .filter-sidebar {
     position: fixed;
     left: 0;
     top: 0;
@@ -270,49 +269,112 @@ a:hover{
 }
 
 /* Header styling */
-.filter-sidebar h3 {
+/* .filter-sidebar h3 {
     color: #6610f2;
     margin-bottom: 20px;
+} */
+
+
+/* FILTER BAR CONTAINER */
+.filter-sidebar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    /* width: 100%; */
+    width: 1222px;
+
+    padding: 16px 20px;
+
+    background: var(--color-surface-tertiary);
+    border-radius: 16px;
+
+    box-sizing: border-box;
+}
+/* Filter field styling */
+
+.filter {
+    display: flex;
+    align-items: center;
+    flex: 1;
+
+    height: 40px;
+
+    background: var(--color-surface-primary);
+    border-radius: 8px;
+
+    padding: 0 12px;
 }
 
-/* Filter field styling */
-.filter {
+/* .filter {
     margin-bottom: 15px;
     width: 100%;
-}
+} */
 
-.filter label {
+/* .filter label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
     color: #6610f2;
+} */
+
+.filter label {
+    display: none;
 }
 
-.filter input, .filter select {
+/* .filter input, .filter select {
     width: 100%;
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 4px;
     box-sizing: border-box;
+} */
+
+.filter input,
+.filter select {
+    width: 100%;
+    height: 100%;
+
+    border: none;
+    outline: none;
+    background: transparent;
+
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+
+    color: var(--color-text-primary);
+}
+
+.filter input::placeholder {
+    font-weight: 300;
+    opacity: 0.6;
+}
+
+.filter select {
+    appearance: none;
+    cursor: pointer;
 }
 
 /* Button styling */
 .filter-sidebar button {
-    margin-top: 20px;
-    padding: 10px;
-    width: 100%;
-    background-color: #6610f2;
-    color: #fff;
+    height: 40px;
+    padding: 0 20px;
+
+    background: var(--color-surface-accent);
+    color: black;
+
     border: none;
-    border-radius: 4px;
+    border-radius: 20px;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+
     cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
+    transition: 0.2s ease;
 }
 
 .filter-sidebar button:hover {
-    background-color: #4e0cc8;
+    filter: brightness(1.1);
 }
 
 /* FORM CONTAINER */
@@ -321,6 +383,11 @@ a:hover{
     justify-content: center;
     flex-direction: column;
     align-items: center;
+}
+
+.form-container h2 {
+    font-size: 24px;
+    margin-bottom: 24px;
 }
 
 /* FORM CARD */
@@ -398,6 +465,13 @@ a:hover{
 
 .form-input:focus::placeholder {
     color: transparent;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    filter: invert(80%) sepia(20%) saturate(300%) hue-rotate(260deg);
+    opacity: 0.7;
+    cursor: pointer;
 }
 
 /* RADIO GROUP */
@@ -489,4 +563,161 @@ a:hover{
 .form-radio-option,
 .form-submit {
     transition: all 0.2s ease;
+}
+
+
+/* CALENDAR */
+.calendar {
+    width: 984px;
+}
+
+.calendar-header {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--color-text-primary);
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 16px;
+}
+
+.calendar-weekday {
+    text-align: center;
+    opacity: 0.9;
+}
+
+.calendar-cell {
+    position: relative;
+    width: 120px;
+    min-height: 96px;
+    background: var(--color-surface-secondary);
+    border: solid var(--color-border-primary) 1px;
+    border-radius: 8px;
+    padding: 8px;
+    transition: 0.2s;
+}
+
+.calendar-cell:hover {
+    background: var(--color-surface-tertiary);
+}
+
+.calendar-day-number {
+    background-color: transparent;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.calendar-events {
+    background-color: transparent;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}/* 
+
+.calendar-event {
+    font-size: 12px;
+    background: var(--color-surface-tertiary);
+    padding: 4px 6px;
+    border-radius: 6px;
+}
+
+.calendar-event:hover {
+    background-color: var(--color-surface-accent);
+} */
+
+.calendar-event {
+    background-color: transparent;
+
+    margin-top: 8px;
+    padding: 4px 4px 4px 4px;
+
+    background: var(--color-surface-tertiary);
+    border-radius: 4px;
+
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* hover */
+.calendar-event:hover {
+    background: var(--color-surface-accent);
+    color: black;
+}
+
+/* SUBJECT NAME */
+.calendar-event-title {
+    background-color: transparent;
+    font-size: 10px;
+    font-weight: 400; /* regular */
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+/* TYPE + TIME */
+.calendar-event-meta {
+    background-color: transparent;
+    font-size: 9px;
+    font-weight: 300; /* light */
+    opacity: 0.7;
+    text-transform: capitalize;
+}
+
+.calendar-add {
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    opacity: 0;
+    border: none;
+    background: var(--color-surface-accent);
+    color: var(--color-surface-primary);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.calendar-cell:hover .calendar-add {
+    opacity: 1;
+}
+
+.button-primary, .create-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 40px;
+    padding: 0 24px;
+
+    border: none;
+    border-radius: 999px;
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    user-select: none;
+}
+
+.button-primary, .create-button {
+    background: var(--color-surface-accent);
+    color: var(--color-text-invert);
+}
+
+.button-primary, .create-button {
+    filter: brightness(1.05);
+}
+
+.button-primary, .create-button {
+    transform: translateY(1px);
+    filter: brightness(0.95);
 }
